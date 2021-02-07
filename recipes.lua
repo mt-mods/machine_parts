@@ -1,13 +1,13 @@
-if minetest.get_modpath('basic_materials') then
-    minetest.register_craft({
-        output = 'machine_parts:gear_assembly',
-        recipe = {
-            {'basic_materials:gear_steel', 'default:steel_ingot', 'default:steel_ingot'},
-            {'basic_materials:gear_steel', 'default:steel_ingot', 'default:steel_ingot'},
-            {'basic_materials:gear_steel', 'basic_materials:steel_bar', 'basic_materials:steel_strip'}
-        }
-    })
-end
+local recipe = machine_parts.recipe
+
+minetest.register_craft({
+	output = 'machine_parts:gear_assembly',
+	recipe = recipe({
+		{'steel_gear', 'steel', 'steel'},
+		{'steel_gear', 'steel', 'steel'},
+		{'steel_gear', 'steel_bar', 'steel_strip'}
+	})
+})
 
 if minetest.get_modpath('basic_materials') and minetest.get_modpath('dye') and minetest.get_modpath('technic') then
     minetest.register_craft({
