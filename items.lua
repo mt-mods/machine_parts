@@ -23,7 +23,7 @@ minetest.register_craftitem("machine_parts:dashboard", {
 	inventory_image = "dashboard.png",
 })
 
-minetest.register_craftitem("machine_parts:hull", {
+minetest.register_craftitem("machine_parts:wagon_frame", {
 	description = "Hull",
 	inventory_image = "hull.png",
 })

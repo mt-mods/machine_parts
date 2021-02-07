@@ -1,6 +1,7 @@
 
 -- Namespace for machine_parts
 machine_parts = {
+	dprint = minetest.settings:get_bool("machine_parts.debug") and print or (function()end),
 	modpath = minetest.get_modpath("machine_parts"),
 	materials = {
 		-- Metal alloys, ingots / small quantity
@@ -16,28 +17,45 @@ machine_parts = {
 		brass = false,
 		bronze = false,
 		-- Metal alloys, blocks / large quantity
-		ironblock = false,
-		cast_ironblock = false,
-		steelblock = false,
-		carbon_steelblock = false,
-		stainless_steelblock = false,
-		tinblock = false,
-		goldblock = false,
-		leadblock = false,
-		copperblock = false,
-		brassblock = false,
-		bronzeblock = false,
+		iron_block = false,
+		cast_iron_block = false,
+		steel_block = false,
+		carbon_steel_block = false,
+		stainless_steel_block = false,
+		tin_block = false,
+		gold_block = false,
+		lead_block = false,
+		copper_block = false,
+		brass_block = false,
+		bronze_block = false,
 		-- Electrical components
 		copper_wire = false,
 		light = false,
+		ic = false,
+		cpu = false,
+		speaker = false,
+		heating_element = false,
+		motor = false,
+		transformer = false,
+		battery = false,
+		monitor = false,
+		datacable = false,
+		-- Dyes
+		dye_violet = false,
+		dye_green = false,
+		dye_yellow = false,
+		dye_black = false,
 		-- Other
+		rubber = false,
+		oil = false,
+		paraffin = false,
 		steel_bar = false,
 		steel_strip = false,
 		steel_gear = false,
 		ladder_wood = false,
 		ladder_steel = false,
 		diamond = false,
-		diamondblock = false,
+		diamond_block = false,
 		glass = false,
 		tempered_glass = false,
 		laminated_glass = false,
@@ -110,3 +128,10 @@ end
 for _,mod in ipairs(optional_mods) do
 	load_mod_recipes(mod)
 end
+
+-- Another consistency check to verify no items missing / typo check for materials
+minetest.register_on_mods_loaded(function()
+	for _,item in pairs(machine_parts.materials) do
+		assert(minetest.registered_items[item], "Craft item missing, verify item name: "..item)
+	end
+end)
