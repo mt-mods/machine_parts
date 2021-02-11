@@ -4,7 +4,7 @@ local dprint = machine_parts.dprint
 
 local mods = {}
 local dupes = {}
-local function add_material(mod, name, value)
+function machine_parts.add_material(mod, name, value)
 	assert(machine_parts.materials[name] ~= nil, "Material not defined in init.lua: "..name)
 	assert(not dupes[mod..name], "Duplicate call to add_material: "..name)
 	dupes[mod..name] = true
@@ -14,10 +14,12 @@ local function add_material(mod, name, value)
 		dprint(("Setting mod state %d for %s"):format(mods[mod], mod))
 	end
 	if mods[mod] == 1 and not machine_parts.materials[name] then
+		value = value or name
 		dprint(("Registering %s as %s from %s"):format(value, name, mod))
 		machine_parts.materials[name] = value:find(":") and value or mod .. ":" .. value
 	end
 end
+local add_material = machine_parts.add_material
 
 -- --------------------------------------------
 -- Metal alloys, ingots and blocks

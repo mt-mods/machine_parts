@@ -1,9 +1,29 @@
 
+-- Mods supported for recipe registrations, code is loaded from recipes/modname.lua
+-- Loading can be disabled with `machine_parts.disable_modname = true` configuration option.
+-- Loading is enabled by default if listed mod is available and enabled.
+local optional_mods = {
+	"advtrains",
+	"advtrains_railbus",
+	"advtrains_subway_colored",
+	"advtrains_train_japan",
+	"linetrack",
+}
+
 -- Namespace for machine_parts
+-- To add another material for crafting: add to machine_parts.materials list
+-- `material_name = false,` and call add_material(mod, name, value) in materials.lua.
 machine_parts = {
 	dprint = minetest.settings:get_bool("machine_parts.debug") and print or (function()end),
 	modpath = minetest.get_modpath("machine_parts"),
 	materials = {
+		-- Machine parts
+		gear_assembly = false,
+		gearbox = false,
+		engine_block = false,
+		drive_shaft = false,
+		dashboard = false,
+		wagon_frame = false,
 		-- Metal alloys, ingots / small quantity
 		iron = false,
 		cast_iron = false,
@@ -87,23 +107,22 @@ function machine_parts.recipe(data)
 	return result
 end
 
+function machine_parts.register_craft(data)
+	minetest.register_craft({
+		output = data.output,
+		recipe = machine_parts.recipe(data.recipe)
+	})
+end
+
 -- Define materials and execute sanity checks
 dofile(machine_parts.modpath .. "/materials.lua")
+dofile(machine_parts.modpath .. "/items.lua")
 for k,v in pairs(machine_parts.materials) do
 	assert(type(v) == "string", "Missing or invalid material for " .. k)
 end
 
 -- Define basic recipes and craft items, core functionality of machine_parts
-dofile(machine_parts.modpath .. "/items.lua")
 dofile(machine_parts.modpath .. "/recipes.lua")
-
--- Mods supported for recipe registrations, code is loaded from recipes/modname.lua
-local optional_mods = {
-	"advtrains",
-	"advtrains_railbus",
-	"advtrains_subway_colored",
-	"linetrack",
-}
 
 -- Collect available mods that are not disabled through configuration
 for _,mod in ipairs(optional_mods) do
