@@ -1,4 +1,6 @@
 
+minetest.clear_craft("advtrains:engine_railbus")
+
 machine_parts.register_craft({
 	output = "advtrains:engine_railbus",
 	recipe = {

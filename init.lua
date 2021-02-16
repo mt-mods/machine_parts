@@ -5,7 +5,7 @@
 local optional_mods = {
 	"advtrains",
 	"advtrains_railbus",
-	"advtrains_subway_colored",
+	"advtrains_train_subway",
 	"advtrains_train_japan",
 	"linetrack",
 }
@@ -61,6 +61,8 @@ machine_parts = {
 		monitor = false,
 		datacable = false,
 		-- Dyes
+		dye_blue = false,
+		dye_red = false,
 		dye_violet = false,
 		dye_green = false,
 		dye_yellow = false,
@@ -143,14 +145,14 @@ local function load_mod_recipes(mod)
 	end
 end
 
--- Load mod specific files if not disabled in configuration
-for _,mod in ipairs(optional_mods) do
-	load_mod_recipes(mod)
-end
-
--- Another consistency check to verify no items missing / typo check for materials
 minetest.register_on_mods_loaded(function()
+	-- Another consistency check to verify no items missing / typo check for materials
 	for _,item in pairs(machine_parts.materials) do
 		assert(minetest.registered_items[item], "Craft item missing, verify item name: "..item)
+	end
+
+	-- Load mod specific files if not disabled in configuration
+	for _,mod in ipairs(optional_mods) do
+		load_mod_recipes(mod)
 	end
 end)

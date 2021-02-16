@@ -1,4 +1,6 @@
 
+minetest.clear_craft("advtrains:subway_wagon")
+
 machine_parts.register_craft({
 	output = "advtrains:subway_wagon",
 	recipe = {

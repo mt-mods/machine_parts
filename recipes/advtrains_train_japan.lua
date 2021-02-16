@@ -1,4 +1,6 @@
 
+minetest.clear_craft("advtrains:engine_japan")
+
 machine_parts.register_craft({
 	output = "advtrains:engine_japan",
 	recipe = {
@@ -7,6 +9,8 @@ machine_parts.register_craft({
 		{"advtrains:wheel", "advtrains:wheel", "advtrains:wheel"}
 	}
 })
+
+minetest.clear_craft("advtrains:wagon_japan")
 
 machine_parts.register_craft({
 	output = "advtrains:wagon_japan",

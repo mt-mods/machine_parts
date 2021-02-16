@@ -136,6 +136,12 @@ add_material("default",            "datacable", "copper_ingot")
 -- --------------------------------------------
 -- Dyes
 
+add_material("dye",     "dye_blue", "blue")
+add_material("default", "dye_blue", "blueberries")
+
+add_material("dye",     "dye_red", "red")
+add_material("default", "dye_red", "iron_lump")
+
 add_material("dye",     "dye_violet", "violet")
 add_material("default", "dye_violet", "blueberries")
 
