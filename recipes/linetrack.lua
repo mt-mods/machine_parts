@@ -1,7 +1,6 @@
 
-minetest.clear_craft("advtrains:boat")
-
 machine_parts.register_craft({
+	clear_craft = true,
 	output = "advtrains:boat",
 	recipe = {
 		{"stainless_steel_block", "laminated_glass", "dashboard"},
@@ -10,9 +9,8 @@ machine_parts.register_craft({
 	},
 })
 
-minetest.clear_craft("advtrains:bus")
-
 machine_parts.register_craft({
+	clear_craft = true,
 	output = "advtrains:bus",
 	recipe = {
 		{"tempered_glass", "tempered_glass", "laminated_glass"},

@@ -110,6 +110,9 @@ function machine_parts.recipe(data)
 end
 
 function machine_parts.register_craft(data)
+	if data.clear_craft then
+		minetest.clear_craft({output=data.output})
+	end
 	minetest.register_craft({
 		output = data.output,
 		recipe = machine_parts.recipe(data.recipe)
@@ -140,6 +143,7 @@ local function load_mod_recipes(mod)
 		local f = io.open(fpath, "r")
 		if f then
 			f:close()
+			machine_parts.dprint(("Loading %s"):format(fpath))
 			dofile(fpath)
 		end
 	end
