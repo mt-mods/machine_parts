@@ -1,3 +1,0 @@
-[submodule "spec/mineunit"]
-	path = spec/mineunit
-	url = git@github.com:mt-mods/mineunit.git
