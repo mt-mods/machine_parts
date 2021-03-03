@@ -13,6 +13,7 @@ jobs:
       with:
         badge-label: Test coverage
     - uses: RubbaBoy/BYOB@v1.2.0
+      if: success() && github.event_name == 'push' && github.ref == 'refs/heads/master'
       with:
         NAME: "${{ steps.mineunit.outputs.badge-name }}"
         LABEL: "${{ steps.mineunit.outputs.badge-label }}"
