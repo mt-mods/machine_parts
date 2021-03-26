@@ -7,6 +7,7 @@ local optional_mods = {
 	"advtrains_railbus",
 	"advtrains_train_subway",
 	"advtrains_train_japan",
+	"advtrains_train_industrial",
 	"linetrack",
 }
 
@@ -87,7 +88,7 @@ machine_parts = {
 
 -- Get material name translating machine_parts material names
 local function get_material(name)
-	if name:find(":") then
+	if name == "" or name:find(":") then
 		-- Return material as is if name contains colon
 		return name
 	end
