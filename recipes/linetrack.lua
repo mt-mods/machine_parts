@@ -1,4 +1,6 @@
 
+local get_material = machine_parts.get_material
+
 machine_parts.register_craft({
 	clear_craft = true,
 	output = "advtrains:boat",
@@ -9,6 +11,13 @@ machine_parts.register_craft({
 	},
 })
 
+minetest.registered_entities["advtrains:boat"].drops = {
+	get_material("engine_block"),
+	get_material("dashboard"),
+	get_material("gearbox"),
+	get_material("stainless_steel_block") .. " 2",
+}
+
 machine_parts.register_craft({
 	clear_craft = true,
 	output = "advtrains:bus",
@@ -18,3 +27,9 @@ machine_parts.register_craft({
 		{"rubber", "drive_shaft", "rubber"},
 	},
 })
+
+minetest.registered_entities["advtrains:bus"].drops = {
+	get_material("engine_block"),
+	get_material("dashboard"),
+	get_material("gearbox"),
+}

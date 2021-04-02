@@ -1,4 +1,6 @@
 
+local get_material = machine_parts.get_material
+
 machine_parts.register_craft({
 	clear_craft = true,
 	output = "advtrains:engine_industrial",
@@ -8,6 +10,13 @@ machine_parts.register_craft({
 		{"advtrains:wheel", "drive_shaft", "advtrains:wheel"}
 	}
 })
+
+minetest.registered_entities["advtrains:engine_industrial"].drops = {
+	get_material("engine_block"),
+	get_material("dashboard"),
+	get_material("gearbox"),
+	get_material("advtrains:wheel") .. " 2",
+}
 
 machine_parts.register_craft({
 	clear_craft = true,
@@ -19,6 +28,13 @@ machine_parts.register_craft({
 	}
 })
 
+minetest.registered_entities["advtrains:engine_industrial_big"].drops = {
+	get_material("engine_block") .. " 2",
+	get_material("dashboard"),
+	get_material("gearbox"),
+	get_material("advtrains:wheel") .. " 3",
+}
+
 machine_parts.register_craft({
 	clear_craft = true,
 	output = "advtrains:wagon_tank",
@@ -29,6 +45,11 @@ machine_parts.register_craft({
 	}
 })
 
+minetest.registered_entities["advtrains:wagon_tank"].drops = {
+	get_material("stainless_steel_block") .. " 2",
+	get_material("advtrains:wheel") .. " 2",
+}
+
 machine_parts.register_craft({
 	clear_craft = true,
 	output = "advtrains:wagon_wood",
@@ -38,3 +59,8 @@ machine_parts.register_craft({
 		{"advtrains:wheel", "dye_red", "advtrains:wheel"}
 	}
 })
+
+minetest.registered_entities["advtrains:wagon_wood"].drops = {
+	get_material("steel_block"),
+	get_material("advtrains:wheel") .. " 2",
+}

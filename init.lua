@@ -87,7 +87,7 @@ machine_parts = {
 }
 
 -- Get material name translating machine_parts material names
-local function get_material(name)
+function machine_parts.get_material(name)
 	if name == "" or name:find(":") then
 		-- Return material as is if name contains colon
 		return name
@@ -96,6 +96,7 @@ local function get_material(name)
 	assert(machine_parts.materials[name], "Attempt to use unavailable material "..name)
 	return machine_parts.materials[name]
 end
+local get_material = machine_parts.get_material
 
 -- Translate recipe materials
 function machine_parts.recipe(data)
