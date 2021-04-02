@@ -1,6 +1,7 @@
 require("mineunit")
 
 mineunit("core")
+fixture("advtrains")
 
 -- Override index lookup to make every item available
 local old_registered_items = minetest.registered_items
